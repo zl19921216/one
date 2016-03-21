@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+			<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+			<link rel="stylesheet" type="text/css" href="css/forget.css"/>
+		<title>足球圈子 — 找回密码</title>
+	</head>
+	<body>
+		<header>足球圈子 — 找回密码</header>
+		<form class="form1">
+			<input id="txt" type="text" placeholder="手机号" name="" id="" value="" />
+			<input id="pwd" type="password" placeholder="密码"/>
+			<button id="phone_number">获取验证码</button>
+			<button id="btn">提 交</button>
+		</form>
+		<script type="text/javascript" src="js/zepto.min.js"></script>
+		<script type="text/javascript">
+			$("#phone_number").on("tap",function(ev){
+				// alert(1)
+				ev.preventDefault();
+				var num = $("#txt").val();
+				alert(num)
+				$.ajax({
+					url:"http://localhost:8080/Proxy/FootBall/checkcode/json/request/sms.do",
+					data:{"phonenumber":num},
+					dataType:"json",
+					succsee:function(e){
+						console.log(e);
+					}
+				})
+			})
+			// $("#btn").on("tap",function(ev){
+			// 	ev.preventDefault();
+			// 	var pwd = $("#password").val();
+
+			// })
+		</script>
+	</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>足球圈子 - 注册</title>
+		<link rel="stylesheet" type="text/css" href="css/register.css"/>
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+	</head>
+	<body>
+		<header>足球圈子 — 注册</header>
+		<form class="form1">
+			<input type="text" placeholder="手机号" id="num" value="" />
+			<input type="password" placeholder="密码" name="" id="pwd" value="" />
+			<input type="text" placeholder="昵称" name="" id="nickname" value="" />
+			<button id="btn" type="button">提 交</button>
+		</form>
+		<script type="text/javascript" src="js/zepto.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				$("#btn").on("tap",function(ev){
+					// alert(1)
+					ev.preventDefault();
+					var num = $("#num").val();
+					var pwd = $("#pwd").val();
+					var nick = $("#nickname").val();
+					// alert(num);
+					// alert(pwd);
+					// alert(nickname);
+					userinfo = window.localStorage;
+					if( true ){
+						// alert(1)
+						$.ajax({
+							url:"http://localhost:8080/Proxy/FootBall/user/json/reg.do",
+							data:{"loginname":num,"password":pwd,"nickname":nick},
+							succsee:function(d){
+								console.log(d.loginname);
+							}
+						})
+					}	
+				})
+			})
+		</script>
+	</body>
+</html>

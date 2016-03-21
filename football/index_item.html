@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+			<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+			<link rel="stylesheet" type="text/css" href="css/index_info.css"/>
+		<title>再次首页</title>
+	</head>
+	<body>
+		<header>
+			<div class="nav">
+				<a href="###">热点</a>
+				<a href="###">关注</a>
+			</div>
+		</header>
+		<div class="tab">
+			<ul class="list">
+				<li>足球现场</li>
+				<li>足球生活</li>
+				<li>足球美女</li>
+			</ul>
+		</div>
+		<div id="content">
+			<ul class="main">
+				<li></li>
+				<li></li>
+				<div style="clear: both;"></div>
+			</ul>
+			<!-- <div class="content">
+				<div>
+					<p>小丸子啊小丸子</p>
+				</div>
+				<div>
+					<p>萌萌哒小丸子啊萌萌哒小丸子啊</p>
+				</div>
+				<div>
+					<p>小丸子啊小丸子</p>
+				</div>
+				<div>
+					<p>萌萌哒小丸子啊萌萌哒小丸子啊</p>
+				</div>
+			</div> -->
+		</div>
+		<footer>
+			<ul class="ftr">
+				<li><a href="###">首页</a></li>
+				<li><a href="###">发现</a></li>
+				<li class="camera">
+					<a href="###">
+						<input type="file"  id="fil" value="" />
+					</a>
+				</li>
+				<li><a href="###">我的</a></li>
+				<li><a href="###">退出</a></li>
+				
+			</ul>
+		</footer>
+	</body>
+	<script type="text/javascript" src="js/rem.js"></script>
+	<script type="text/javascript" src="js/iscroll.js"></script>
+	<script type="text/javascript" src="js/zepto.min.js"></script>
+	<script type="text/javascript">
+		var content = document.getElementById("content")
+		
+		window.onload = function(){
+			var myScroll = new iScroll(content, {	
+		    hScrollbar:false,
+		    vScrollbar:false
+		});
+			var headerH = $("header").height();
+			var headerH = $("footer").height();
+			var tabH = $(".tab").height();
+			// console.log(headerH);
+			// console.log(footerH);
+			// console.log(tabH);
+			var $Height = $(window).height() - headerH - headerH - tabH - 20;
+			//console.log($Height)
+			// var mainH = $(".main").height($Height);
+			var oLi = $(".main li");
+			var Num = 0;
+			var dataLength = 0;
+			var $tab = 1;
+			into(Num);
+
+			$("#content .main").swipeUp(function(){
+				//var oClientHeight =document.documentElement.clientHeight;
+				// console.log(oClientHeight);
+				//var oScrollTop = document.body.scrollTop;
+				// console.log(oScrollTop);
+				//var oScrollHeight = document.body.scrollHeight;
+				// console.log(oScrollHeight);
+					Num += 12;
+					into(Num);
+			})
+			function into(Num){
+				if((Num > dataLength -1) && ( Num > 0) ){
+					return false;
+ 				}
+				if( true ){
+					$.ajax({
+						url:"http://localhost:8080/Proxy/FootBall/tweet/json/query/hotspot.do",
+						data:{"category":"1"},
+						dataType:"json",
+						success: function(d){
+							//console.log(d);
+							dataList = d.data.tweetlist;
+							//console.log(dataList);
+							var html = "";
+							var maxNum = Num + 12;
+							//console.log(maxNum)
+							for( var i = 0; i < maxNum; i++ ){
+								html = '<div><img src="http://101.200.173.217:8080/FootBall'+dataList[i].defaultFilePath+ dataList[i].defaultFileName +'"/><p><a href="#">'+dataList[i].content+'</a></p></div>';
+								oLi[getCpr()].innerHTML += html;
+							}
+							myScroll.refresh();// 当图片没有加载完成时,iscroll不能作用 ，因为不能获取高度
+						}
+					})
+				}
+			}
+			function getCpr(){
+				var index = 0;
+				var iH = oLi[index].offsetHeight;
+				for(var i = 1;i < oLi.length;i++ ){
+					if(oLi[i].offsetHeight < iH){
+						index = i;
+						iH = oLi[i].offsetHeight;
+					}
+				}
+				return index;
+			}
+		}
+	</script>
+</html>

@@ -1,0 +1,182 @@
+		body,html{
+			width: 100%;
+			height: 100%;
+			margin: 0 auto;
+			max-width: 640px;
+			background: #f1f1f1;
+		}
+		header{
+			width: 100%;
+			height: 37px;
+			background: #0f91c5;
+			overflow: hidden;
+		}
+		header .link{
+			width: 108px;
+			height: 22px;
+			margin: 8px auto 0;
+			overflow: hidden;
+		}
+		header a{
+			float: left;
+			width: 54px;
+			height: 22px;
+			line-height: 22px;
+			text-align: center;
+			color: #fff;
+			font-size: 12px;
+		}
+		header a:nth-of-type(1){
+			background: #79c1df;
+			border-radius: 15px 0 0 15px;
+		}
+		header a:nth-of-type(2){
+			opacity: .8;
+			background: #79c1df;
+			border-radius: 0 15px 15px 0;
+		}
+		.tab{
+			width: 100%;
+			height: 33px;
+		}
+		.tab .list{
+			height: 33px;
+			overflow: hidden;
+		}
+		.tab .list li{
+			float: left;
+			width: 33.3%;
+			height: 32px;
+			line-height: 30px;
+			text-align: center;
+			color: #000;
+			background: #fff;
+			font-size: 13px;
+			border-bottom: 1px solid #d9d9d9;
+		}
+		.tab .list li:first-child{
+			height: 28px;
+			border-bottom: 5px solid #0f91c5;
+		}
+		.content{
+			width: 100%;
+			height: 430px;
+			background: #f1f1f1;
+		}
+		.main{
+			width: 100%;
+			height: 420px;
+			background: #fff;
+			margin: 5px auto;
+			overflow: hidden;
+		}
+		.dl1{
+			box-sizing: border-box;
+			float: left;
+			width: 50%;
+			height: 186px;
+			border: 1px solid #e5e5e5;
+		}
+		.dl1 dt{
+			background: url('../images/wz_03.jpg') no-repeat;
+			background-size: 100% 100%;
+			height: 157px;
+			border-bottom: 1px solid #e5e5e5;
+		}
+		.dl1 dd{
+			height: 29px;
+			font-size: 14px;
+			text-align: center;
+			line-height: 29px;
+			color: #000;
+		}
+		.dl2{
+			box-sizing: border-box;
+			float:right;
+			width: 50%;
+			height: 208px;
+			border: 1px solid #e5e5e5;
+		}
+		.dl2 dt{
+			height: 156px;
+			border-bottom: 1px solid #e5e5e5;
+			background: url("../images/dog_05.jpg") no-repeat;
+			background-size: 100% 100%;
+		}
+		.dl2 dd{
+			height: 51px;
+		}
+		.dl2 dd p{
+			width: 140px;
+			height: 33px;
+			line-height: 21px;
+			font-size: 13px;
+			margin: 6px 0 0 10px;
+		}
+		.dl3{
+			box-sizing: border-box;
+			float: left;
+			width: 50%;
+			height: 208px;
+			margin-top: 5px;
+			border: 1px solid #e5e5e5;
+		}
+		.dl3 dt{
+			
+		}
+		footer{
+			width: 100%;
+			height: 40px;
+			box-sizing: border-box;
+			border-top: 1px solid #cdcdcd;
+			background: #fff;
+		}
+		.list1{
+			width: 100%;
+			height: 40px;
+			display: -webkit-flex;
+		}
+		.list1 li{
+			font-size: 12px;
+		}
+		.list1 li a{
+			color: #dddddd;;
+		}
+		.list1 li:nth-of-type(1){
+			background: url('../images/house.jpg') no-repeat center 1px;
+			background-size: 30%;
+			text-align: center;
+			line-height: 60px;
+			-webkit-flex: 1;
+		}
+		.list1 li:nth-of-type(2){
+			background: url('../images/fd.jpg') no-repeat center 1px;
+			background-size: 30%;
+			text-align: center;
+			line-height: 60px;
+			-webkit-flex: 1;
+		}
+		.list1 li:nth-of-type(3){
+			background:#fff url('../images/camera.jpg') no-repeat center;
+			background-size: 60%;
+			border-radius: 50%;
+			border:1px solid #e7e7e7;
+			width: 42px;
+			height: 42px;
+			-webkit-transform: translateY(-5px);
+		}
+		.list1 li:nth-of-type(4){
+			background: url('../images/man.jpg') no-repeat center 1px;
+			background-size: 30%;
+			text-align: center;
+			line-height: 60px;
+			-webkit-flex: 1;
+		}
+		.list1 li:nth-of-type(5){
+			background: url('../images/door.jpg') no-repeat center 1px;
+			background-size: 25%;
+			text-align: center;
+			line-height: 60px;
+			-webkit-flex: 1;
+		}
+

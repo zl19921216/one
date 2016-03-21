@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+			<link rel="stylesheet" type="text/css" href="css/search.css"/>
+			<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<title></title>
+	</head>
+	<body>
+		<header>发现</header>
+		<nav>
+			<input id="txt" type="text" placeholder="请输入昵称"/>
+			<input id="btn" type="button" value="搜索"/>
+		</nav>
+		<div class="content">
+			<div class="nav">
+				<div class="contain">
+					<i class="pkq"></i>
+						<div class="message">
+							<p id="name">我叫小萌</p>
+							<p id="signnature">我是小萌我怕谁！哈哈哈哈</p>
+						</div>
+				</div>
+			</div>
+		</div>
+		<footer>
+			<ul class="form">
+				<li><a href="###">首页</a></li>
+				<li><a href="###">发现</a></li>
+				<li><a href="###"></a></li>
+				<li><a href="###">我的</a></li>
+				<li><a href="###">退出</a></li>
+			</ul>
+		</footer>
+	</body>
+	<script type="text/javascript" src="js/rem.js"></script>
+	<script type="text/javascript" src="js/zepto.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("#btn").on("tap",function(ev){
+				ev.preventDefault();
+				if( true ){
+					var txt = $("#txt").val();
+					var name = $("#name");
+					var signnature = $("#signnature");
+					$.ajax({
+						url:"http://localhost:8080/Proxy/FootBall/user/json/queryall.do",
+						data:{
+							"loginsuserid":txt
+						},
+						dataType:"json",
+						success:function(d){
+							//console.log(d);
+							//alert(d.data.userlist[0].nickname)
+							name.html("我叫"+d.data.userlist[0].nickname);
+							signnature.html(d.data.userlist[0].signnature);
+						}
+					})
+				}
+			})
+		})
+	</script>
+</html>

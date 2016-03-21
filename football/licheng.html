@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <script src="js/rem.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/zepto.min.js" type="text/javascript " charset="utf-8"></script>
+    <script src="js/iscroll.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+    <header>
+        <div class="tab">
+            <button type="button" class="active">热点</button>
+            <button type="button">关注</button>
+        </div>
+    </header>
+    <div class="main area">
+        <ul class="title">
+            <li class="active">足球现场</li>
+            <li>足球生活</li>
+            <li>足球美女</li>
+        </ul>
+        <div class="wrap">
+            <div class="content">
+                <div class="statuBar">
+                    Loadding…………
+                </div>
+                <ul>
+                    <!--  <li>
+                        <figure><img src="" /></figure>
+                        <figcaption>某某某的某某某的按当时看阿德</figcaption>
+                    </li>
+                    <li>
+                        <figure><img src="" /></figure>
+                        <figcaption>某某某的某某某的按当时看阿德</figcaption>
+                    </li> -->
+                </ul>
+                <ul>
+                    <!-- <li>
+                        <figure><img src="" /></figure>
+                        <figcaption>某某某的某某某的按当时看阿德</figcaption>
+                    </li>
+                    <li>
+                        <figure><img src="" /></figure>
+                        <figcaption>某某某的某某某的按当时看阿德</figcaption>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="find area">
+        <ul class="content">
+            <img src="images/jiantou.svg" alt="" class="svg">
+            <li>
+                <div class="picTit">
+                    <img src="images/pkq.png" class="headPic" alt="头像">
+                    <div class="derection">
+                        <h3>我是谁</h3>
+                        <P>我要干什么</P>
+                    </div>
+                    <div class="good">
+                        3245432
+                    </div>
+                </div>
+                <img src="images/cat.jpg" alt="show" class="show">
+                <p class="text">我说我忘记哦我还送我</p>
+            </li>
+            <li>
+                <div class="picTit">
+                    <img src="images/pkq.png" class="headPic" alt="头像">
+                    <div class="derection">
+                        <h3>我是谁</h3>
+                        <P>我要干什么</P>
+                    </div>
+                    <div class="good">
+                        3245432
+                    </div>
+                </div>
+                <img src="images/cat.jpg" alt="show" class="show">
+                <p class="text">我说我忘记哦我还送我</p>
+            </li>
+            <img src="images/jiantou.svg" alt="" class="svg1">
+        </ul>
+    </div>
+    <footer>
+        <ul>
+            <li class="selected">
+                <figure><img src="images/home.png" /></figure>
+                <figcaption>首页</figcaption>
+            </li>
+            <li>
+                <figure><img src="images/search.png" /></figure>
+                <figcaption>发现</figcaption>
+            </li>
+            <li>
+                <img class="camera" src="images/camera.png" />
+            </li>
+            <li>
+                <figure><img src="images/user.png" /></figure>
+                <figcaption>我的</figcaption>
+            </li>
+            <li>
+                <figure><img src="images/exit.png" /></figure>
+                <figcaption>退出</figcaption>
+            </li>
+        </ul>
+    </footer>
+    <script type="text/javascript">
+    var wrap = document.getElementsByClassName('wrap')[0];
+    var find = document.getElementsByClassName('find')[0];
+    var dataList = [];
+    var index = 0;
+    var length = 0;
+    function toload() {
+        var arr = [];
+        for (var i = 0; i < 10; i++) {
+            arr.push(addPic())
+        }
+        Promise.all(arr).then(function() {
+            load();
+        });
+    }
+
+    function addPic() {
+        if (index >= length) {
+            return;
+        }
+        var $li = $('<li><figure><img src="" /></figure><figcaption></figcaption></li>');
+        var $img = $('img', $li);
+        var $ul = $('.content>ul').eq(0).height() < $('.content>ul').eq(1).height() ? $('.content>ul').eq(0) : $('.content>ul').eq(1);
+        $ul.append($li);
+        $img.attr('src', 'http://101.200.173.217:8080/FootBall/' + dataList[index].defaultFilePath + dataList[index].thumbnailname);
+        $('figcaption', $li).html(dataList[index].content);
+        index++;
+        var p = Promise.resolve($img.load);
+        return p;
+    }
+    $.ajax({
+        url: 'http://localhost:8080/Proxy/FootBall/tweet/json/query/hotspot.do',
+        type: 'GET',
+        dataType: 'json',
+        data: {
+            category: '1'
+        },
+        success: function(d) {
+            dataList = d.data.tweetlist;
+            length = dataList.length;
+            toload();
+        }
+    })
+
+    function load() {
+        var offsetH = $('.statuBar').height();
+        var offsetH1 = $('.svg').height();
+        var flag = 0;
+        var flag1 = 0;
+        var fIs = new iScroll(find, {
+            hScrollbar: false,
+            vScrollbar: false,
+            topOffset: offsetH1,
+            onRefresh: function() {},
+            onScrollMove: function() {
+                if (this.y > 0) {
+                    flag1 = 1;
+                    $('.svg').css('transform', 'rotate(180deg)');
+                    $('.svg1').css('transform', 'rotate(180deg)');
+                } else if (this.y <= (this.maxScrollY + offsetH1)) {
+                    flag1 = 2;
+                    $('.svg').css('transform', 'rotate(0deg)');
+                    $('.svg1').css('transform', 'rotate(360deg)');
+                } else {
+                    flag1 = 0;
+                    $('.svg').css('transform', 'rotate(0deg)');
+                    $('.svg1').css('transform', 'rotate(180deg)');
+                }
+            },
+            onScrollEnd: function() {
+                if (flag1 === 1) {
+                    $('.svg').css('transform', 'rotate(0deg)');
+                    $('.svg1').css('transform', 'rotate(180deg)');
+                    $('.svg').after($('<li><div class="picTit"><img src="images/pkq.png" class="headPic" alt="头像"><div class="derection"><h3>我是谁</h3><P>我要干什么</P></div><div class="good">3245432</div></div><img src="images/cat.jpg" alt="show" class="show"><p class="text">我说我忘记哦我还送我</p></li>'));
+                    this.refresh();
+                } else if (flag1 === 2) {
+                    $('.svg').css('transform', 'rotate(0deg)');
+                    $('.svg1').css('transform', 'rotate(180deg)');
+            }
+        }        
+        </script>
+    </body>
+</html>

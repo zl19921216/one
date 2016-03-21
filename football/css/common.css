@@ -1,0 +1,53 @@
+		body,html{
+			width: 100%;
+			height: 100%;
+			max-width: 640px;
+			margin: 0 auto;
+			background: #fff;
+		}
+		header{
+			width: 100%;
+			height: 37px;
+			line-height: 37px;
+			text-align: center;
+			background: #0f91c5;
+			font-size: 17px;
+			color: #fff;
+		}
+		.form{
+			margin: 0 15px;
+		}
+		.form input:first-child{
+			margin-top: 9px;
+		}
+		.form input{
+			width: 100%;
+			height: 33px;
+			line-height: 33px;
+			border-bottom: 1px solid #7f7f7f;
+			margin-top: 27px;
+		}
+		.form .links{
+			width: 100%;
+			height: 65px;
+			line-height: 65px;
+		}
+		.form .links a{
+			color: #61b7da;text-align: center;text-decoration: underline;font-size: 12px;
+		}
+		.form .links a:nth-of-type(1){
+			float: left;
+		}
+		.form .links a:nth-of-type(2){
+			float: right;
+		}
+		.form button{
+			width: 100%;
+			height: 38px;
+			line-height: 38px;
+			color: #fff;
+			font-size: 17px;
+			border-radius: 3px;
+			border: none;
+			background: #0f91c5;
+		}
